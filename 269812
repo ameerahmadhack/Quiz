@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .login-box {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        .logo {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+        }
+        .login-btn {
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+        }
+        .login-btn:hover {
+            background-color: #333333;
+        }
+        #error-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <img src="/storage/emulated/0/Android/media/com.transsion.phoenix/PHX_Archive/phx_extracted/colorful-bird-illustration-gradient/bird_2.jpg" alt="Logo" class="logo">
+            <form id="login-form" onsubmit="event.preventDefault(); loginOrSignUp();">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required="">
+                    <span id="username-error" style="color:red; display:none;">Invalid username. Please enter a valid username.</span>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required="">
+                    <span id="password-error" style="color:red; display:none;">Incorrect password. Please try again.</span>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const validUsernames = ["ameer", "aisha", "adam", "musa", "ahmad"];
+        const validPassword = "admin";
+
+        function loginOrSignUp() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            let isValid = true;
+            
+            if (!validUsernames.includes(username)) {
+                document.getElementById('username-error').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('username-error').style.display = 'none';
+            }
+            
+            if (password !== validPassword) {
+                document.getElementById('password-error').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('password-error').style.display = 'none';
+            }
+            
+            if (isValid) {
+                // Store the username in localStorage
+                localStorage.setItem('username', username);
+                // Redirect to the dashboard or any other page
+                alert('Login successful!');
+                window.location.href = "/storage/emulated/0/loginsa.html/dashboard.html";
+            }
+        }
+    </script>
+</body>
+</html>
